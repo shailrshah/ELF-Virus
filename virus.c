@@ -5,7 +5,7 @@
 #include <sys/sendfile.h> 	// for sendfile()
 #include <sys/wait.h>	  	// for waitpid()
 #include <fcntl.h>        	// for file control operations 
-#include <unistd.h>	  		// for close()
+#include <unistd.h>			// for close()
 
 #define SIGNATURE 4033
 #define SIZE 14064
@@ -151,7 +151,7 @@ void appendSignature(int vfd, char* fileName, mode_t mode, int size) {
 }
 
 /**
- * Execute the original host program inside this file
+ * Execute the original host program inside this object file
  */
 void executeHostPart(int vfd, mode_t mode, int totalSize, char *argv[]) {
 	char* tempFileName = TEMP_FILENAME;
