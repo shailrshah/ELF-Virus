@@ -1,5 +1,16 @@
 # ELF-Virus by Shail Shah
+
+**DISCLAIMER: This is for educational purposes only. Do not use it for illegal activities. You are solely responsible for your actions!**
+
 This repository contains code for a simple ELF Virus that is capable of executing something malicious, infecting other ELF files, and executing the infected files normally in the foreground.
+
+### What is an ELF Virus? 
+An ELF Virus is a malicious piece of code that targets ELF (Executable and Linkable Format) executeables. It infects these executables in such a way that after being affected, these executables carry out some things invisible to the user. If the ELF Virus is able to get root access, it can cause significant damage to the system.
+
+### How it works
+1. Something bad is executed. 
+2. An ELF executeable that has not yet been infected is searched for in the current working directory. If found, the executable is infected, by adding the virus code before the execuatble, and a magic number or a signature at the end of the executable.
+3. If the object file that is being executed is the original virus file itself, a magic number or a signature is added at the end of the file. Otherwise, the original code of the executable is executed.
 
 ### Getting Started 
 1. Clone the repository: 
@@ -24,14 +35,6 @@ This repository contains code for a simple ELF Virus that is capable of executin
 `./virus`
 
 If you make changes to the code, make sure the value of `SIZE` in [virus.c](src/virus.c) is the same as the size of the virus object file. You can get its size by running `wc virus -c`.
-
-### What is an ELF Virus? 
-An ELF Virus is a malicious piece of code that targets ELF (Executable and Linkable Format) executeables. It infects these executables in such a way that after being affected, these executables carry out some things invisible to the user. If the ELF Virus is able to get root access, it can cause significant damage to the system.
-
-### How it works
-1. Something bad is executed. 
-2. An ELF executeable that has not yet been infected is searched for in the current working directory. If found, the executable is infected, by adding the virus code before the execuatble, and a magic number or a signature at the end of the executable.
-3. If the object file that is being executed is the original virus file itself, a magic number or a signature is added at the end of the file. Otherwise, the original code of the executable is executed.
 
 ### References
 - [ELF Virus, Part I By Himanshu Arora](https://nnc3.com/mags/LJ_1994-2014/LJ/213/11185.html)
