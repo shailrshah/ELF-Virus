@@ -23,7 +23,7 @@ This repository contains code for a simple ELF Virus that is capable of executin
 7. Run the virus:
 `./virus`
 
-If you make changes to the code, make sure the value of `SIZE` is the same as the size of the virus object file. You can get its size by running `wc virus -c`
+If you make changes to the code, make sure the value of `SIZE` in [virus.c](src/virus.c) is the same as the size of the virus object file. You can get its size by running `wc virus -c`.
 
 ### What is an ELF Virus? 
 An ELF Virus is a malicious piece of code that targets ELF (Executable and Linkable Format) executeables. It infects these executables in such a way that after being affected, these executables carry out some things invisible to the user. If the ELF Virus is able to get root access, it can cause significant damage to the system.
@@ -33,3 +33,9 @@ An ELF Virus is a malicious piece of code that targets ELF (Executable and Linka
 2. An ELF executeable that has not yet been infected is searched for in the current working directory. If found, the executable is infected, by adding the virus code before the execuatble, and a magic number or a signature at the end of the executable.
 3. If the object file that is being executed is the original virus file itself, a magic number or a signature is added at the end of the file. Otherwise, the original code of the executable is executed.
 
+### References
+- [ELF Virus, Part I By Himanshu Arora](https://nnc3.com/mags/LJ_1994-2014/LJ/213/11185.html)
+- [elf_virus by hitzhangjie](https://github.com/hitzhangjie/elf_virus)
+- [sud03r's answer for how to loop through files in C](https://stackoverflow.com/questions/1271064/how-do-i-loop-through-all-files-in-a-folder-using-c)
+- [Cyclonecode's answer for how to read ELF header in C](https://stackoverflow.com/questions/3http://www.sco.com/developers/gabi/latest/ch4.eheader.html4960383/how-read-elf-header-in-c)
+- [ELF Headers by the Santa Cruz Operation, Inc.](http://www.sco.com/developers/gabi/latest/ch4.eheader.html)
