@@ -23,6 +23,8 @@ This repository contains code for a simple ELF Virus that is capable of executin
 7. Run the virus:
 `./virus`
 
+If you make changes to the code, make sure the value of `SIZE` is the same as the size of the virus object file. You can get its size by running `wc virus -c`
+
 ### What is an ELF Virus? 
 An ELF Virus is a malicious piece of code that targets ELF (Executable and Linkable Format) executeables. It infects these executables in such a way that after being affected, these executables carry out some things invisible to the user. If the ELF Virus is able to get root access, it can cause significant damage to the system.
 
