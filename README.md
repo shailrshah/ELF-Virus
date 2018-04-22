@@ -3,19 +3,35 @@ This repository contains code for a simple ELF Virus that is capable of executin
 
 ### Getting Started 
 1. Clone the repository: 
-`git clone https://github.com/shailrshah/ELF-Virus.git`
+``` bash
+git clone https://github.com/shailrshah/ELF-Virus.git
+```
 
 2. Go inside the repository: 
-`cd ELF-Virus`
+``` bash
+cd ELF-Virus
+```
 
 3. Change permission for the test: 
-`chmod 755 test\checkVirus.sh`
+``` bash
+chmod 755 test/virusCheck.sh
+```
 
 4. Run the test: 
-`test\checkVirus.sh`
+``` bash
+test/virusCheck.sh
+```
 
 5. View and edit the source code: 
-`vim src\virus.c`
+``` bash
+vim src/virus.c
+```
+
+6. Compile and run the source code: 
+``` bash
+gcc -o virus src/virus.c
+./virus
+```
 
 ### What is an ELF Virus? 
 An ELF Virus is a malicious piece of code that targets ELF (Executable and Linkable Format) executeables. It infects these executables in such a way that after being affected, these executables carry out some things invisible to the user. If the ELF Virus is able to get root access, it can cause significant damage to the system.
